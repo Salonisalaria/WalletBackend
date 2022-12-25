@@ -1,4 +1,4 @@
-Setup Project
+**Setup Project**
 
 In order to setup the project follow the below steps
 - RUN `npm install`
@@ -13,7 +13,7 @@ In order to setup the project follow the below steps
 
 
 
-Endpoints:
+**Endpoints:**
 
 1. Setup Wallet Endpoint: It is a POST api endpoint, used for wallet creation
 
@@ -114,7 +114,7 @@ SUCCESS RESPONSE:
 
 
 
-DB Structure:
+**DB Structure:**
 
 Here we have used two collections:
 
