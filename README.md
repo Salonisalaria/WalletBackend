@@ -1,4 +1,7 @@
-**Setup Project**
+# Live URL
+https://concrete-brook-shingle.glitch.me
+
+# Setup Project
 
 In order to setup the project follow the below steps
 - RUN `npm install`
@@ -13,11 +16,11 @@ In order to setup the project follow the below steps
 
 
 
-**Endpoints:**
+# Endpoints:
 
 1. Setup Wallet Endpoint: It is a POST api endpoint, used for wallet creation
 
-REQUEST:
+**REQUEST:**
 curl --location --request POST 'http://localhost:8080/setup' \
 --header 'Content-Type: application/json' \
 --data-raw '{
@@ -25,18 +28,18 @@ curl --location --request POST 'http://localhost:8080/setup' \
     "name": "Alex"
 }'
 
-ERROR RESPONSE:
+**ERROR RESPONSE:**
 {
     "errMsg": "Username already exists !!!"
 }
 
-SUCCESS RESPONSE:
+**SUCCESS RESPONSE:**
 {"id":"63a8dd633e7676989abc5803","name":"Alex","balance":20000.4444,"transactionId":"NGCALFZLWV","createdAt":"2022-12-25T23:31:47.844Z"}
 
 
 2. Credit Debit Wallet Endpoint: Used for making transactions from the wallet
 
-REQUEST:
+**REQUEST:**
 curl --location --request POST 'http://localhost:8080/transact/63a3510b88c2acc31620fd85' \
 --header 'Content-Type: application/json' \
 --data-raw '{
@@ -44,20 +47,20 @@ curl --location --request POST 'http://localhost:8080/transact/63a3510b88c2acc31
     "description": "Recharge"
 }'
 
-ERROR RESPONSE:
+**ERROR RESPONSE:**
 {"balance":2000100000.4444,"errMsg":"Invalid Transaction due to low balance or transaction amount 0 !!!"}
 
-SUCCESS RESPONSE:
+**SUCCESS RESPONSE:**
 {"balance":100000,"transactionId":"7JEMUTFTEH"}
 
 
 3. Get Transaction Enpoint: This endpoint is used to get a list of the transactions
 
-REQUEST:
+**REQUEST:**
 curl --location --request GET 'http://localhost:8080/transactions?walletId=63a217183cfa7fa356ba9767&skip=0&limit=0' \
 --data-raw ''
 
-RESPONSE:
+**RESPONSE:**
 [
     {
         "_id": "63a2fa995a3b06cac849bcdd",
@@ -79,11 +82,11 @@ RESPONSE:
 
 4. Get Wallet Endpoint: Used to get wallet details with the help of wallet ID
 
-REQUEST:
+**REQUEST:**
 curl --location --request GET 'http://localhost:8080/wallet/63a8dd633e7676989abc5803' \
 --data-raw ''
 
-RESPONSE:
+**RESPONSE:**
 {
     "id": "63a8dd633e7676989abc5803",
     "balance": 20000.4444,
@@ -94,17 +97,17 @@ RESPONSE:
 
 5. Login Endpoint: Helps the user to login using the username
 
-REQUEST: 
+**REQUEST:** 
 curl --location --request POST 'http://localhost:8080/wallet/login' \
 --header 'Content-Type: application/json' \
 --data-raw '{
     "name": "Alex"
 }'
 
-ERROR RESPONSE:
+**ERROR RESPONSE:**
 {"errMsg":"User not found !!!"}
 
-SUCCESS RESPONSE:
+**SUCCESS RESPONSE:**
 {"id":"63a8dd633e7676989abc5803","balance":20000.4444,"name":"Alex","date":"2022-12-25T23:31:47.844Z"}
 
 
@@ -114,13 +117,13 @@ SUCCESS RESPONSE:
 
 
 
-**DB Structure:**
+# DB Structure:
 
 Here we have used two collections:
 
 1. transaction DB 
 
-Schema:
+**Schema:**
 
 walletId: String,
 transactionAmout: Number,
@@ -142,7 +145,7 @@ createdAt: Date,
 
 2. wallet DB 
 
-Schema:
+**Schema:**
 
 name: { type: String, unique: true},
 balance: Number,
@@ -162,7 +165,7 @@ createdAt: Date,
 
 
 
-**Queries:**
+# Queries:
 
 1. We are using .save() methods to store new objects for wallet and transaction
    Usages
