@@ -154,3 +154,40 @@ createdAt: Date,
 - Balance amount is the current balance in the wallet
 - Transaction ID is an auto generated ID, in order to identify a unique transaction
 - Created At date states the date of creation of wallet
+
+
+
+
+
+
+
+
+**Queries:**
+
+1. We are using .save() methods to store new objects for wallet and transaction
+   Usages
+   - Save transaction
+   - Save wallet details
+
+2. We are using .findOne({_id: req.params.walletId}), to search a wallet based on wallet
+   Also the reason to use findOne is because no two wallets can have the same id, hence better to use findOne
+
+3. We are using
+    findOneAndUpdate({
+        _id: req.params.walletId,
+    }, {
+        $inc: {balance: req.body.amount}, 
+    }, {
+        new: true,
+        runValidators: true,
+    })
+    The above query, updated the wallet details by id. The above query increased the balance field by the specified amount
+    Also please note, as in debit tranasaction we are receiving transaction amount in negative values, hence we perform
+    the increment, and get the final value
+    The `new: true` option provided, returns the object after the update
+    Also findOneAndUpdate helps to avoid race conditions, as it doesn't allow object access when findOneAndUpdate is using
+    the data
+
+4. We are also using .find(), to find transactions for a given wallet
+   The query is also accompanied by .skip(req.query.skip).limit(req.query.limit)
+   The above helps to skip certain number of records from the start and get the next n records
